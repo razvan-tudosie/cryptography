@@ -7,3 +7,22 @@ div.container {
     max-width:1200px;
     margin: 0px auto;
 }
+
+
+table.table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+table.table tr td {
+    padding: 8px;
+}
+
+table.table th {
+    padding: 8px;
+}
+
+table.table tr:nth-child(even) {
+    background-color: #FAFAFA;
+}

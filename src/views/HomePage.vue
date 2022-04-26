@@ -10,18 +10,19 @@
             <button type="submit">Submit</button>
         </form>
 
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Litera</th>
                     <th>Frecventa</th>
                 </tr>
             </thead>
-
-            <tr v-for="(test, index) in frequencyInfo" v-bind:key="test.value" >
-                <td>{{ index }}</td>
-                <td>{{ test }}</td>
-            </tr>
+            <tbody>
+                <tr v-for="(result, index) in frequencyInfo" :key="result" >
+                    <td>{{ index }}</td>
+                    <td>{{ result }}</td> 
+                </tr>
+            </tbody>
         </table>
         <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     </div>
@@ -40,35 +41,45 @@ export default {
     setup () {
         let myText = ref('');
         let frequencyInfo = ref([]);
+        let probAp = ref([]);
 
         function onSubmit() {
-            //  console.log(myText.value);
             getFrequency(myText.value);
-            console.log(frequencyInfo.value);
+            console.log('here', frequencyInfo.value);
+        }
+
+        // To RESOLV..this is not ok
+        function probOfAp(fregChar) {
+            var prob = {};
+            // de scazut spatiile din texte
+            var calc = fregChar / myText.value.length;
+            probAp.value = prob;
             
+            console.log('calcul', calc);
+            console.log('prob', prob);
+        
         }
 
         function getFrequency(string) {
             var freq = {};
-            for (var i=0; i<string.length;i++) {
+            for (var i = 0; i < string.length; i++) {
                 var character = string.charAt(i);
                 if (freq[character]) {
-                freq[character]++;
+                    freq[character]++;
                 } else {
-                freq[character] = 1;
+                    freq[character] = 1;
                 }
+                // probOfAp(freq[character]);
             }
 
             frequencyInfo.value = freq;
-            // return freq;
-            // console.log(freq);
         }
 
         return {
             myText,
             frequencyInfo,
             onSubmit,
-            getFrequency
+            probOfAp
         };
     }
 }
